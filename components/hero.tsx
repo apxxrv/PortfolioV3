@@ -2,7 +2,12 @@
 
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
-import { SentientSphere } from "./sentient-sphere"
+import dynamic from "next/dynamic"
+
+const SentientSphere = dynamic(
+  () => import("./sentient-sphere").then((m) => m.SentientSphere),
+  { ssr: false, loading: () => <div className="w-full h-full" /> }
+)
 
 export function Hero() {
   const containerRef = useRef<HTMLElement>(null)
