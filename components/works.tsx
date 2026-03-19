@@ -16,9 +16,18 @@ const projects = [
   },
   {
     title: "iECHO",
-    tags: ["React", "AWS Bedrock", "EKS", "Python"],
+    tags: ["Bedrock", "AWS Lambda", "DynamoDB", "React"],
     image: "/futuristic-data-dashboard-dark-minimal.jpg",
-    url: "https://github.com/apxxrv",
+    previewUrl: "https://smartchallenges.asu.edu/challenges/knowledge-access-chatbot-project-echo",
+    url: "https://smartchallenges.asu.edu/challenges/knowledge-access-chatbot-project-echo",
+    year: "2025",
+  },
+  {
+    title: "CINTANA AI",
+    tags: ["Bedrock", "AWS Amplify", "Salesforce", "Amazon Translate"],
+    image: "/abstract-memory-storage-visualization.jpg",
+    previewUrl: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
+    url: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
     year: "2025",
   },
   {
