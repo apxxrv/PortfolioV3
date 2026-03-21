@@ -15,6 +15,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [resumeHovered, setResumeHovered] = useState(false)
   const { theme, setTheme } = useTheme()
 
   useEffect(() => setMounted(true), [])
@@ -87,6 +88,41 @@ export function Navbar() {
               {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </motion.button>
           )}
+
+          {/* Resume Hover Button */}
+          <div
+            className="relative hidden md:block"
+            onMouseEnter={() => setResumeHovered(true)}
+            onMouseLeave={() => setResumeHovered(false)}
+          >
+            <button
+              data-cursor-hover
+              className="font-mono text-xs tracking-widest border border-foreground/20 px-3 py-1.5 rounded-full text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors duration-300"
+            >
+              RÉSUMÉ
+            </button>
+
+            <AnimatePresence>
+              {resumeHovered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-3 w-64 h-[340px] overflow-hidden rounded-lg border border-foreground/10 shadow-2xl z-50 bg-background"
+                >
+                  <iframe
+                    src="/resume.pdf"
+                    title="Apoorv Singh — Resume"
+                    className="w-full h-full border-none"
+                    style={{ pointerEvents: "none" }}
+                  />
+                  <div className="absolute inset-0 bg-[#2563eb]/5 mix-blend-overlay pointer-events-none" />
+                  <div className="absolute bottom-0 inset-x-0 h-8 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Status Indicator */}
           <div className="hidden md:flex items-center gap-3">
