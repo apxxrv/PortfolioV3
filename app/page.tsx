@@ -1,30 +1,21 @@
-import { Navbar } from "@/components/navbar"
+import { Sidebar } from "@/components/sidebar"
 import { Hero } from "@/components/hero"
-import { About } from "@/components/about"
-import { Works } from "@/components/works"
 import { Experience } from "@/components/experience"
+import { Works } from "@/components/works"
 import { TechMarquee } from "@/components/tech-marquee"
 import { Footer } from "@/components/footer"
-import { CustomCursor } from "@/components/custom-cursor"
-import { SmoothScroll } from "@/components/smooth-scroll"
-import { SectionBlend } from "@/components/section-blend"
-import { PageLoader } from "@/components/page-loader"
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      <PageLoader />
-      <CustomCursor />
-      <Navbar />
-      <main>
+    <div className="flex min-h-screen bg-background overflow-x-hidden">
+      <Sidebar />
+      <main className="flex-1 lg:ml-64 w-full min-w-0">
         <Hero />
-        <SectionBlend />
-        <About />
-        <Works />
         <Experience />
+        <Works />
         <TechMarquee />
         <Footer />
       </main>
-    </SmoothScroll>
+    </div>
   )
 }

@@ -2,90 +2,67 @@
 
 import { motion } from "framer-motion"
 
-const techItems = [
-  "PYTHON",
-  "TYPESCRIPT",
-  "NEXT.JS",
-  "REACT",
-  "AWS",
-  "NODE.JS",
-  "FLASK",
-  "C++",
-  "DOCKER",
-  "BEDROCK",
-  "POSTGRESQL",
-  "GO",
+const skillCategories = [
+  {
+    label: "Languages",
+    items: ["Python", "TypeScript", "JavaScript", "Java", "C/C++", "Go", "Kotlin", "Bash", "SQL"],
+  },
+  {
+    label: "Frameworks",
+    items: ["React", "Next.js", "Node.js", "Express", "FastAPI", "Flask", "Django", "TailwindCSS", "Expo"],
+  },
+  {
+    label: "Cloud & DevOps",
+    items: ["AWS (EKS, Bedrock, Lambda, SageMaker, S3, SQS, ECR)", "GCP", "Docker", "AWS CDK", "GitHub Actions", "Strands SDK", "Twilio"],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "MongoDB", "Firebase", "Supabase", "DynamoDB", "FAISS", "ChromaDB", "pgvector"],
+  },
+  {
+    label: "AI / ML",
+    items: ["LLM orchestration", "RAG pipelines", "MCP", "LangChain", "HuggingFace", "PyTorch", "TensorFlow", "Voyage-3", "GPT-4o", "Bedrock", "Gemini AI", "MediaPipe"],
+  },
 ]
-
-const concepts = [
-  "ARCHITECTURE",
-  "SYSTEMS",
-  "INTERFACES",
-  "ALGORITHMS",
-  "EMERGENCE",
-  "COGNITION",
-  "SYNTHESIS",
-  "VELOCITY",
-  "ENTROPY",
-  "FLUX",
-  "MEDIAPIPE",
-  "SAGEMAKER",
-]
-
-function MarqueeRow({ items, direction = "left" }: { items: string[]; direction?: "left" | "right" }) {
-  const duplicatedItems = [...items, ...items, ...items, ...items]
-
-  return (
-    <div className="relative overflow-hidden py-4">
-      <motion.div
-        className={`flex gap-8 ${direction === "left" ? "animate-marquee-left" : "animate-marquee-right"}`}
-        style={{ width: "fit-content" }}
-      >
-        {duplicatedItems.map((item, index) => (
-          <span
-            key={index}
-            className="group font-sans text-5xl md:text-7xl lg:text-8xl font-light tracking-tight whitespace-nowrap cursor-default"
-            style={{
-              WebkitTextStroke: "1px var(--text-stroke)",
-              color: "transparent",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--foreground)"
-              e.currentTarget.style.WebkitTextStroke = "none"
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.color = "transparent"
-              e.currentTarget.style.WebkitTextStroke = "1px var(--text-stroke)"
-            }}
-          >
-            {item}
-            <span className="mx-8 text-foreground/20">•</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  )
-}
 
 export function TechMarquee() {
   return (
-    <section className="relative py-24 overflow-hidden md:py-32">
+    <section id="skills" className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="px-8 md:px-12 mb-16"
+        transition={{ duration: 0.6 }}
+        className="mb-12"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">06 — TECHNICAL ARSENAL</p>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Skills</h2>
+        <p className="text-sm text-muted-foreground mt-2">Technologies I work with</p>
       </motion.div>
 
-      {/* Marquee Rows */}
-      <div className="space-y-4">
-        <MarqueeRow items={techItems} direction="left" />
-        <MarqueeRow items={concepts} direction="right" />
+      {/* Skills Grid */}
+      <div className="space-y-8 max-w-5xl">
+        {skillCategories.map((category, index) => (
+          <motion.div
+            key={category.label}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.06 }}
+          >
+            <h3 className="text-sm font-medium text-foreground mb-3">{category.label}</h3>
+            <div className="flex flex-wrap gap-2">
+              {category.items.map((item) => (
+                <span
+                  key={item}
+                  className="text-xs px-3 py-1.5 rounded-lg border border-border bg-card text-muted-foreground hover:text-foreground hover:border-foreground/30 transition-colors duration-200"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

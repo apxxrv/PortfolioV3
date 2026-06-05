@@ -1,183 +1,136 @@
 "use client"
 
-import type React from "react"
-
-import { useState, useRef } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import { motion } from "framer-motion"
+import { ArrowUpRight } from "lucide-react"
 
 const projects = [
   {
+    title: "Trace",
+    role: "Co-Founder & Research Engineer",
+    tags: ["GPT-4o", "pgvector", "Voyage-3", "Supabase"],
+    url: "https://trace-ai.co",
+    description: "Intent-aware memory layer for Claude Code & Codex — eliminates the 20% of every session lost to context re-establishment. 100% accuracy lift, 52% token reduction, 24% latency reduction vs cold sessions.",
+    highlights: ["Won VillageHacks '26", "DevLabs Momentum Cohort", "15 developers onboarded week 1"],
+  },
+  {
     title: "STILED AI",
-    tags: ["Node.js", "Flask", "Gemini AI", "MediaPipe"],
-    image: "/abstract-neural-network-visualization-dark-theme.jpg",
-    previewUrl: "https://thestiled.com",
+    role: "Founding Software Engineer",
+    tags: ["React", "FastAPI", "Gemini 2.5", "GCP"],
     url: "https://thestiled.com",
-    year: "2025",
+    description: "AI virtual try-on Chrome extension across 10+ retail platforms. Agentic outfit recommendations with image generation, async iMessage/SMS pipeline for purchase capture.",
+    highlights: ["300+ beta users", "Featured in Business of Fashion", "89% found suggestions useful"],
   },
   {
-    title: "iECHO",
-    tags: ["Bedrock", "AWS Lambda", "DynamoDB", "React"],
-    image: "/futuristic-data-dashboard-dark-minimal.jpg",
-    previewUrl: "https://smartchallenges.asu.edu/challenges/knowledge-access-chatbot-project-echo",
+    title: "iECHO RAG Chatbot",
+    role: "Cloud & Frontend Developer",
+    tags: ["Bedrock", "EKS Fargate", "Strands SDK", "React"],
     url: "https://smartchallenges.asu.edu/challenges/knowledge-access-chatbot-project-echo",
-    year: "2025",
+    description: "RAG chatbot for Project ECHO — a global NGO moving expert medical knowledge to frontline workers. Full ingestion pipeline with Bedrock vector storage in preview.",
+    highlights: ["250K+ healthcare workers", "38 countries", "90% answer accuracy"],
   },
   {
-    title: "CINTANA AI",
-    tags: ["Bedrock", "AWS Amplify", "Salesforce", "Amazon Translate"],
-    image: "/abstract-memory-storage-visualization.jpg",
-    previewUrl: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
+    title: "Cintana AI Agent",
+    role: "Cloud Developer",
+    tags: ["AgentCore", "Claude Sonnet", "Twilio", "AWS CDK"],
     url: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
-    year: "2025",
+    description: "Multilingual agentic AI for Cintana Education — guiding students from inquiry through enrollment with event-driven WhatsApp pipeline and Salesforce CRM integration.",
+    highlights: ["30+ universities", "28 countries", "Extensible tool architecture"],
   },
   {
     title: "Mine Alliance",
-    tags: ["Next.js", "Flask", "SageMaker", "Leaflet"],
-    image: "/abstract-memory-storage-visualization.jpg",
+    role: "Sparks Challenge Winner",
+    tags: ["SageMaker", "Next.js", "Flask", "Leaflet"],
     url: "https://github.com/apxxrv",
-    year: "2024",
-  },
-  {
-    title: "PrepU",
-    tags: ["AWS", "Python", "D3.js", "Rekognition"],
-    image: "/sound-wave-visualization-dark-theme.jpg",
-    url: "https://github.com/apxxrv",
-    year: "2023",
+    description: "AI geospatial platform for Arizona's mining industry — trained and deployed geologically intelligent model with interactive map visualizations.",
+    highlights: ["Won statewide competition", "AWS SageMaker deployment"],
   },
 ]
 
 export function Works() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const springX = useSpring(mouseX, { stiffness: 150, damping: 20 })
-  const springY = useSpring(mouseY, { stiffness: 150, damping: 20 })
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect()
-      mouseX.set(e.clientX - rect.left)
-      mouseY.set(e.clientY - rect.top)
-    }
-  }
-
   return (
-    <section id="works" className="relative py-32 px-8 md:px-12 md:py-24">
+    <section id="projects" className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-24"
+        transition={{ duration: 0.6 }}
+        className="mb-12"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">04 — SELECTED WORKS</p>
-        <h2 className="font-sans text-3xl md:text-5xl font-light italic">The Distortion Gallery</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Projects</h2>
+        <p className="text-sm text-muted-foreground mt-2">Selected work I&apos;ve shipped</p>
       </motion.div>
 
-      {/* Projects List */}
-      <div ref={containerRef} onMouseMove={handleMouseMove} className="relative">
+      {/* Project Cards Grid */}
+      <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, index) => (
-          <motion.div
+          <motion.a
             key={project.title}
-            initial={{ opacity: 0, y: 40 }}
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: index * 0.1 }}
-            className="relative border-t border-foreground/10 py-8 md:py-12"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
+            transition={{ duration: 0.5, delay: index * 0.08 }}
+            className="group rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
           >
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-cursor-hover
-              className="group flex flex-col md:flex-row md:items-center justify-between gap-4"
-            >
-              {/* Year */}
-              <span className="font-mono text-xs text-muted-foreground tracking-widest order-1 md:order-none">
-                {project.year}
-              </span>
-
-              {/* Title */}
-              <motion.h3
-                className="font-sans text-4xl md:text-6xl lg:text-7xl font-light tracking-tight group-hover:text-foreground/70 transition-colors duration-300 flex-1"
-                animate={{
-                  x: hoveredIndex === index ? 20 : 0,
+            {/* Iframe Preview */}
+            <div className="relative h-40 sm:h-48 w-full overflow-hidden bg-muted">
+              <iframe
+                src={project.url}
+                title={project.title}
+                scrolling="no"
+                className="w-[1280px] h-[800px] border-none pointer-events-none"
+                style={{
+                  transform: "scale(0.25)",
+                  transformOrigin: "top left",
                 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                {project.title}
-              </motion.h3>
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-card/60" />
+              <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <div className="w-7 h-7 rounded-full bg-foreground/90 flex items-center justify-center">
+                  <ArrowUpRight className="w-3.5 h-3.5 text-background" />
+                </div>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-4 lg:p-6">
+              <div className="flex items-start justify-between gap-2">
+                <h3 className="text-base lg:text-lg font-medium text-card-foreground group-hover:text-primary transition-colors duration-200">
+                  {project.title}
+                </h3>
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5">{project.role}</p>
+              <p className="text-sm text-muted-foreground mt-3 leading-relaxed line-clamp-3">
+                {project.description}
+              </p>
 
               {/* Tags */}
-              <div className="flex gap-2 flex-wrap order-2 md:order-none">
+              <div className="flex flex-wrap gap-1.5 mt-4">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="font-mono text-[10px] tracking-wider px-3 py-1 border border-foreground/20 rounded-full text-muted-foreground"
+                    className="text-[10px] tracking-wide px-2 py-0.5 rounded-md bg-accent text-accent-foreground"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-            </a>
-          </motion.div>
+
+              {/* Highlights */}
+              <div className="flex flex-wrap gap-x-3 gap-y-1 mt-4 pt-3 border-t border-border">
+                {project.highlights.map((h) => (
+                  <span key={h} className="text-[10px] text-muted-foreground">
+                    {h}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.a>
         ))}
-
-        {/* Floating Preview */}
-        <motion.div
-          className="absolute pointer-events-none z-50 w-64 h-40 md:w-80 md:h-48 overflow-hidden rounded-lg"
-          style={{
-            x: springX,
-            y: springY,
-            translateX: "-50%",
-            translateY: "-320%",
-          }}
-          animate={{
-            opacity: hoveredIndex !== null ? 1 : 0,
-            scale: hoveredIndex !== null ? 1 : 0.8,
-          }}
-          transition={{ duration: 0.2 }}
-        >
-          {hoveredIndex !== null && (
-            "previewUrl" in projects[hoveredIndex] ? (
-              <iframe
-                src={(projects[hoveredIndex] as typeof projects[0]).previewUrl}
-                title={projects[hoveredIndex].title}
-                scrolling="no"
-                style={{
-                  width: "1280px",
-                  height: "800px",
-                  transform: "scale(0.25)",
-                  transformOrigin: "top left",
-                  pointerEvents: "none",
-                  border: "none",
-                }}
-              />
-            ) : (
-              <motion.img
-                src={projects[hoveredIndex].image}
-                alt={projects[hoveredIndex].title}
-                className="w-full h-full object-cover"
-                initial={{ scale: 1.2 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 0.4 }}
-                style={{ filter: "grayscale(50%) contrast(1.1)" }}
-              />
-            )
-          )}
-          {/* Glitch overlay */}
-          <div className="absolute inset-0 bg-[#2563eb]/10 mix-blend-overlay" />
-        </motion.div>
       </div>
-
-      {/* Bottom Border */}
-      <div className="border-t border-foreground/10" />
     </section>
   )
 }

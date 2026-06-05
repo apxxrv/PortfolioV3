@@ -4,119 +4,124 @@ import { motion } from "framer-motion"
 
 const experiences = [
   {
-    role: "Founding Engineer",
+    role: "Founding Software Engineer",
     company: "STILED AI",
-    period: "Nov 2025 — Present",
+    url: "https://thestiled.com",
+    period: "Dec 2024 — Present",
     location: "Remote",
+    current: true,
     highlights: [
-      "AI Chrome extension for virtual try-on across 5 retail platforms, 10,000+ SKUs",
-      "Reduced pipeline latency 40s → 3s via MediaPipe + K-Means CV redesign",
-      "Node.js/Express backend with Flask microservices and real-time cross-platform scraping",
+      "Full-stack virtual try-on platform: React.js/TypeScript frontend, Node.js/FastAPI backend, Chrome extension on GCP with Supabase and CI/CD via GitHub Actions",
+      "Integrated Gemini Flash 2.5 for agentic outfit recommendations with image generation; automated scrapers across 10+ retail sites; reduced AI inference latency 40s → 3s",
+      "Architected async Sendblue iMessage/SMS pipeline (11 intent flows, 7-state conversation engine) capturing purchase decisions within the 2-minute styling intent window",
+      "Validated with 300+ beta users: 89% found suggestions useful, 92.5% would use while shopping; featured in Business of Fashion",
     ],
   },
   {
-    role: "Software Developer",
-    company: "ASU CIC / Amazon Web Services — iECHO",
-    period: "Apr 2025 — Present",
+    role: "Cloud & Frontend Developer",
+    company: "ASU CIC × AWS — iECHO RAG Chatbot",
+    url: "https://smartchallenges.asu.edu/challenges/knowledge-access-chatbot-project-echo",
+    period: "May — Aug 2025",
     location: "Tempe, AZ",
+    current: true,
     highlights: [
-      "Microservices on EKS Fargate + API Gateway serving 250,000+ rural healthcare workers",
-      "Document pipeline: Python crawlers → S3 → Bedrock → Titan Embeddings — 90% retrieval accuracy",
-      "React/TypeScript frontend with offline-first mobile, real-time chat, and DynamoDB analytics",
+      "Led 3-person team building RAG chatbot for Project ECHO on EKS Fargate + API Gateway with Strands SDK, serving 250K+ healthcare workers across 38 countries",
+      "Among first teams to implement AWS Bedrock vector storage in preview; full pipeline: Python crawlers → S3 Lambda → Bedrock Data Automation → Titan Multimodal Embeddings",
+      "Sole developer of React/TypeScript frontend with Shadcn/UI; real-time streaming, citation rendering, offline-optimized mobile UX; 90% answer accuracy via Bedrock Nova Lite",
     ],
   },
   {
-    role: "Software Development Intern",
+    role: "Cloud Developer",
+    company: "ASU CIC × AWS — Admissions AI Agent",
+    url: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
+    period: "Sep — Nov 2025",
+    location: "Tempe, AZ",
+    current: false,
+    highlights: [
+      "Architected multilingual agentic AI on Bedrock AgentCore for Cintana Education (30+ universities, 28 countries) orchestrating Claude Sonnet; Docker + ECR, AWS CDK infra",
+      "Event-driven WhatsApp pipeline (SQS → Lambda → Twilio) with DynamoDB session tracking; Salesforce CRM integration and AWS Translate for multilingual RAG",
+      "Designed extensible tool architecture enabling new agent capabilities without modifying core logic; RAG over Bedrock Knowledge Bases with cited, culturally responsive answers",
+    ],
+  },
+  {
+    role: "Software Engineering Intern",
     company: "AGCO Corporation",
     period: "May — Sep 2024",
     location: "Duluth, GA",
+    current: false,
     highlights: [
-      "Upgraded Salesforce REST APIs v58 → v60 across 600+ Apex classes",
-      "Refactored legacy codebase, reducing technical debt; authored scalability docs adopted by platform team",
-    ],
-  },
-  {
-    role: "Software Development Intern",
-    company: "Profila",
-    period: "Nov 2021 — Jul 2022",
-    location: "Lucerne, Switzerland",
-    highlights: [
-      "HubSpot CMS + Cloudflare CDN integration for 20,000+ users — 30% page load improvement",
-      "Built responsive web app (React/Next.js) and native Android app (Kotlin/Jetpack Compose)",
+      "Upgraded Salesforce REST APIs to v60.0 and refactored 600+ Apex classes, reducing CRM technical debt across cross-functional engineering teams",
+      "Authored system scalability and integration documentation adopted by engineering teams for future enhancements",
     ],
   },
 ]
 
 export function Experience() {
   return (
-    <section className="relative py-24 px-8 md:px-12 md:py-32">
+    <section id="experience" className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
       {/* Section Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-20"
+        transition={{ duration: 0.6 }}
+        className="mb-12"
       >
-        <p className="font-mono text-xs tracking-[0.3em] text-muted-foreground mb-4">05 — EXPERIENCE</p>
-        <h2 className="font-sans text-3xl md:text-5xl font-light italic">Where I've Shipped</h2>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Experience</h2>
+        <p className="text-sm text-muted-foreground mt-2">Where I&apos;ve built and shipped</p>
       </motion.div>
 
       {/* Timeline */}
-      <div className="relative">
+      <div className="relative max-w-5xl">
         {/* Vertical line */}
-        <motion.div
-          initial={{ scaleY: 0 }}
-          whileInView={{ scaleY: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-foreground/20 via-foreground/10 to-transparent origin-top hidden md:block"
-        />
+        <div className="absolute left-2 top-3 bottom-3 w-px bg-border hidden sm:block" />
 
-        <div className="space-y-0">
+        <div className="space-y-10">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.company}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              className="relative md:pl-12 py-10 border-b border-foreground/10 last:border-0 group"
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="relative sm:pl-10"
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 top-12 w-px h-px hidden md:block">
-                <motion.div
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                  className="w-2 h-2 rounded-full bg-accent -translate-x-[3px] -translate-y-[3px]"
+              <div className="absolute left-0 top-1.5 hidden sm:block">
+                <div
+                  className={`h-4 w-4 rounded-full border-2 ${
+                    exp.current
+                      ? "border-foreground bg-foreground"
+                      : "border-border bg-background"
+                  }`}
                 />
               </div>
 
-              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-0">
-                {/* Period + Location */}
-                <div className="md:w-56 shrink-0">
-                  <p className="font-mono text-xs tracking-widest text-muted-foreground">{exp.period}</p>
-                  <p className="font-mono text-[10px] tracking-widest text-muted-foreground/60 mt-1">{exp.location}</p>
+              {/* Content */}
+              <div>
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                  <h3 className="text-base lg:text-lg font-medium text-foreground">{exp.role}</h3>
+                  <span className="text-xs text-muted-foreground">{exp.period}</span>
                 </div>
+                <p className="text-sm text-muted-foreground mt-0.5">
+                  {exp.url ? (
+                    <a href={exp.url} target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-200 underline decoration-border hover:decoration-foreground">
+                      {exp.company}
+                    </a>
+                  ) : (
+                    exp.company
+                  )}
+                  {" · "}{exp.location}
+                </p>
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="font-sans text-2xl md:text-3xl font-light tracking-tight mb-1 group-hover:text-foreground/80 transition-colors duration-300">
-                    {exp.role}
-                  </h3>
-                  <p className="font-mono text-xs tracking-wider text-accent mb-5">{exp.company}</p>
-
-                  <ul className="space-y-2">
-                    {exp.highlights.map((h, i) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <span className="font-mono text-[10px] text-accent mt-[3px] shrink-0">—</span>
-                        <span className="font-mono text-xs text-muted-foreground leading-relaxed">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <ul className="mt-3 space-y-2">
+                  {exp.highlights.map((h, i) => (
+                    <li key={i} className="text-sm text-muted-foreground leading-relaxed flex gap-2">
+                      <span className="text-border mt-1.5 shrink-0">•</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </motion.div>
           ))}
