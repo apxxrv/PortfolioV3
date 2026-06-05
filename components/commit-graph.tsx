@@ -42,15 +42,15 @@ export function CommitGraph() {
   if (error || !data) return null
 
   return (
-    <section className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
+    <section className="px-5 py-12 sm:px-8 md:px-10 lg:px-12 lg:py-24 border-t border-border">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-8"
+        className="mb-6 md:mb-8"
       >
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Activity</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-4xl font-medium text-foreground">Activity</h2>
         <p className="text-sm text-muted-foreground mt-2">
           {data.totalContributions.toLocaleString()} contributions in the last year
         </p>
@@ -61,11 +61,11 @@ export function CommitGraph() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="overflow-x-auto scrollbar-hide"
+        className="overflow-x-auto scrollbar-hide -mx-5 px-5 sm:mx-0 sm:px-0"
       >
-        <div className="flex gap-[3px] min-w-max">
+        <div className="flex gap-[3px] md:gap-1 min-w-max">
           {data.weeks.map((week, wi) => (
-            <div key={wi} className="flex flex-col gap-[3px]">
+            <div key={wi} className="flex flex-col gap-[3px] md:gap-1">
               {week.contributionDays.map((day, di) => {
                 const level = getLevel(day.contributionCount)
                 return (
@@ -75,7 +75,7 @@ export function CommitGraph() {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.2, delay: (wi * 7 + di) * 0.001 }}
-                    className={`w-[10px] h-[10px] sm:w-[12px] sm:h-[12px] rounded-[2px] border transition-colors duration-200 ${
+                    className={`w-[10px] h-[10px] sm:w-[11px] sm:h-[11px] md:w-[13px] md:h-[13px] lg:w-[14px] lg:h-[14px] rounded-[2px] md:rounded-[3px] border transition-colors duration-200 ${
                       level === 0
                         ? "border-border bg-transparent"
                         : level === 1
@@ -99,13 +99,13 @@ export function CommitGraph() {
         </div>
 
         <div className="flex items-center gap-2 mt-4">
-          <span className="text-[10px] text-muted-foreground">Less</span>
-          <div className="w-[10px] h-[10px] rounded-[2px] border border-border bg-transparent" />
-          <div className="w-[10px] h-[10px] rounded-[2px] border border-primary/30 bg-primary/20" />
-          <div className="w-[10px] h-[10px] rounded-[2px] border border-primary/50 bg-primary/40" />
-          <div className="w-[10px] h-[10px] rounded-[2px] border border-primary/70 bg-primary/60" />
-          <div className="w-[10px] h-[10px] rounded-[2px] border border-primary bg-primary" />
-          <span className="text-[10px] text-muted-foreground">More</span>
+          <span className="text-[10px] md:text-[11px] text-muted-foreground">Less</span>
+          <div className="w-[10px] h-[10px] md:w-[13px] md:h-[13px] rounded-[2px] md:rounded-[3px] border border-border bg-transparent" />
+          <div className="w-[10px] h-[10px] md:w-[13px] md:h-[13px] rounded-[2px] md:rounded-[3px] border border-primary/30 bg-primary/20" />
+          <div className="w-[10px] h-[10px] md:w-[13px] md:h-[13px] rounded-[2px] md:rounded-[3px] border border-primary/50 bg-primary/40" />
+          <div className="w-[10px] h-[10px] md:w-[13px] md:h-[13px] rounded-[2px] md:rounded-[3px] border border-primary/70 bg-primary/60" />
+          <div className="w-[10px] h-[10px] md:w-[13px] md:h-[13px] rounded-[2px] md:rounded-[3px] border border-primary bg-primary" />
+          <span className="text-[10px] md:text-[11px] text-muted-foreground">More</span>
         </div>
       </motion.div>
     </section>

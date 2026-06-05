@@ -48,19 +48,19 @@ const projects = [
 
 export function Works() {
   return (
-    <section id="projects" className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
+    <section id="projects" className="px-5 py-12 sm:px-8 md:px-10 lg:px-12 lg:py-24 border-t border-border">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-12"
+        className="mb-10 md:mb-12"
       >
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Projects</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-4xl font-medium text-foreground">Projects</h2>
         <p className="text-sm text-muted-foreground mt-2">Things I&apos;ve built and shipped</p>
       </motion.div>
 
-      <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3 lg:gap-8">
         {projects.map((project, index) => (
           <motion.a
             key={project.title}
@@ -71,10 +71,10 @@ export function Works() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
-            className="group rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer"
+            className="group rounded-xl border border-border bg-card overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] cursor-pointer"
           >
             {/* Iframe Preview */}
-            <div className="relative h-40 sm:h-48 w-full overflow-hidden bg-muted">
+            <div className="relative h-36 sm:h-40 md:h-44 lg:h-48 w-full overflow-hidden bg-muted">
               <div className="absolute inset-0 origin-top-left scale-[0.3] w-[333.33%] h-[333.33%]">
                 <iframe
                   src={project.url}
@@ -94,7 +94,7 @@ export function Works() {
             </div>
 
             {/* Content */}
-            <div className="p-4 lg:p-6">
+            <div className="p-4 md:p-5 lg:p-6">
               <h3 className="text-base lg:text-lg font-medium text-card-foreground group-hover:text-primary transition-colors duration-200">
                 {project.title}
               </h3>

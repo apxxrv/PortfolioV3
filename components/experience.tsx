@@ -38,18 +38,18 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="px-4 py-12 sm:px-8 lg:px-12 lg:py-24 border-t border-border">
+    <section id="experience" className="px-5 py-12 sm:px-8 md:px-10 lg:px-12 lg:py-24 border-t border-border">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-12"
+        className="mb-10 md:mb-12"
       >
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground">Experience</h2>
+        <h2 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-4xl font-medium text-foreground">Experience</h2>
       </motion.div>
 
-      <div className="space-y-10 max-w-3xl">
+      <div className="space-y-8 md:space-y-10 max-w-3xl">
         {experiences.map((exp, index) => (
           <motion.div
             key={exp.company}
@@ -59,7 +59,7 @@ export function Experience() {
             transition={{ duration: 0.5, delay: index * 0.08 }}
           >
             <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-              <h3 className="text-base lg:text-lg font-medium text-foreground">{exp.role}</h3>
+              <h3 className="text-[15px] md:text-base lg:text-lg font-medium text-foreground">{exp.role}</h3>
               <span className="text-xs text-muted-foreground shrink-0">{exp.period}</span>
             </div>
             <p className="text-sm text-muted-foreground mt-0.5">
@@ -76,7 +76,7 @@ export function Experience() {
                 exp.company
               )}
             </p>
-            <p className="text-sm text-muted-foreground mt-3 leading-relaxed">
+            <p className="text-sm md:text-[15px] text-muted-foreground mt-3 leading-relaxed">
               {exp.description}
             </p>
           </motion.div>

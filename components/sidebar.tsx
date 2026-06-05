@@ -71,7 +71,7 @@ export function Sidebar() {
                   onClick={() => scrollTo(link.href)}
                   className={`text-sm transition-colors duration-200 ${
                     activeSection === link.href.slice(1)
-                      ? "text-foreground"
+                      ? "text-primary"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
@@ -116,45 +116,45 @@ export function Sidebar() {
           {/* Status */}
           <div className="flex items-center gap-2">
             <span className="relative flex h-1.5 w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
             </span>
             <span className="text-xs text-muted-foreground">Available for work</span>
           </div>
         </motion.div>
       </aside>
 
-      {/* Mobile Navigation */}
-      <header className="lg:hidden sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm px-4 py-3 w-full">
+      {/* Mobile & Tablet Navigation */}
+      <header className="lg:hidden sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm px-5 sm:px-8 md:px-10 py-3 md:py-4 w-full">
         <div className="flex items-center justify-between">
-          <button onClick={() => scrollTo("#home")} className="text-sm font-medium text-foreground">
+          <button onClick={() => scrollTo("#home")} className="text-sm md:text-[15px] font-medium text-foreground py-1">
             Apoorv Singh
           </button>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="text-muted-foreground hover:text-foreground transition-colors p-1.5 -m-1.5"
               >
-                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {theme === "dark" ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
               </button>
             )}
             <div className="flex items-center gap-1.5">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75" />
-                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-primary" />
               </span>
               <span className="text-xs text-muted-foreground">Available</span>
             </div>
           </div>
         </div>
-        <nav className="mt-2 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 whitespace-nowrap py-1">
+        <nav className="mt-2 overflow-x-auto scrollbar-hide -mx-5 px-5 sm:-mx-8 sm:px-8 md:-mx-10 md:px-10">
+          <div className="flex gap-5 md:gap-6 whitespace-nowrap py-1.5">
             {navLinks.map((link) => (
               <button
                 key={link.label}
                 onClick={() => scrollTo(link.href)}
-                className={`text-xs transition-colors duration-200 ${
+                className={`text-xs md:text-sm py-1 transition-colors duration-200 ${
                   activeSection === link.href.slice(1)
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
