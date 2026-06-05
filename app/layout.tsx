@@ -1,29 +1,21 @@
-import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist_Mono } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "@/components/theme-provider"
 import "./globals.css"
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-})
+const font = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Apoorv Singh | Software Engineer",
-  description: "CS @ ASU (GPA 3.8) · Founding Engineer shipping GenAI products with Python, TypeScript, AWS, and React. Co-Founder @ Trace.",
+  title: "Apoorv Singh",
+  description: "I build AI products and ship them to real people.",
   openGraph: {
-    title: "Apoorv Singh | Software Engineer",
-    description: "Founding Engineer shipping GenAI products across healthcare, e-commerce, and mining. AWS · React · Python.",
+    title: "Apoorv Singh",
+    description: "I build AI products and ship them to real people.",
     url: "https://apoorv.dev",
-    siteName: "Apoorv Singh",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Apoorv Singh | Software Engineer",
-    description: "Founding Engineer shipping GenAI products across healthcare, e-commerce, and mining. AWS · React · Python.",
     creator: "@apxxrv",
   },
   metadataBase: new URL("https://apoorv.dev"),
@@ -34,17 +26,12 @@ export const viewport: Viewport = {
   viewportFit: "cover",
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={geistMono.variable} suppressHydrationWarning>
-      <body className="font-mono antialiased overflow-x-hidden">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+    <html lang="en" className={font.className} suppressHydrationWarning>
+      <body className="antialiased overflow-x-hidden">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>

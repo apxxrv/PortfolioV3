@@ -1,15 +1,16 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
+import { Section } from "./section"
 
-const experiences = [
+const jobs = [
   {
     role: "Founding Software Engineer",
     company: "STILED AI",
     url: "https://thestiled.com",
     period: "Dec 2024 — Present",
     description:
-      "Building an AI virtual try-on platform — Chrome extension that works across 10+ retail sites, agentic outfit recs with Gemini, and an SMS pipeline that captures purchase intent in under 2 minutes. 300+ beta users, featured in Business of Fashion.",
+      "Building an AI virtual try-on platform — Chrome extension across 10+ retail sites, agentic outfit recs with Gemini, SMS pipeline that captures purchase intent in under 2 minutes. 300+ beta users, featured in Business of Fashion.",
   },
   {
     role: "Cloud & Frontend Developer",
@@ -25,7 +26,7 @@ const experiences = [
     url: "https://smartchallenges.asu.edu/challenges/multilingual-admissions-agent-cintana-education",
     period: "Sep — Nov 2025",
     description:
-      "Multilingual AI agent that guides students from inquiry through enrollment. Event-driven WhatsApp pipeline with Twilio, DynamoDB session tracking, and Salesforce CRM integration. 30+ universities, 28 countries.",
+      "Multilingual AI agent guiding students from inquiry through enrollment. Event-driven WhatsApp pipeline with Twilio, DynamoDB session tracking, Salesforce CRM integration. 30+ universities, 28 countries.",
   },
   {
     role: "Software Engineering Intern",
@@ -38,50 +39,33 @@ const experiences = [
 
 export function Experience() {
   return (
-    <section id="experience" className="px-5 py-12 sm:px-8 md:px-10 lg:px-12 lg:py-24 border-t border-border">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-10 md:mb-12"
-      >
-        <h2 className="text-2xl sm:text-3xl md:text-[2rem] lg:text-4xl font-medium text-foreground">Experience</h2>
-      </motion.div>
-
-      <div className="space-y-8 md:space-y-10 max-w-3xl">
-        {experiences.map((exp, index) => (
+    <Section id="experience" title="Experience">
+      <div className="space-y-8">
+        {jobs.map((job, i) => (
           <motion.div
-            key={exp.company}
-            initial={{ opacity: 0, y: 30 }}
+            key={job.company}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.08 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.4, delay: i * 0.05 }}
           >
-            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-              <h3 className="text-[15px] md:text-base lg:text-lg font-medium text-foreground">{exp.role}</h3>
-              <span className="text-xs text-muted-foreground shrink-0">{exp.period}</span>
+            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-0.5">
+              <h3 className="text-[15px] font-medium text-foreground">{job.role}</h3>
+              <span className="text-xs text-muted shrink-0">{job.period}</span>
             </div>
-            <p className="text-sm text-muted-foreground mt-0.5">
-              {exp.url ? (
-                <a
-                  href={exp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors duration-200 underline decoration-border hover:decoration-foreground"
-                >
-                  {exp.company}
+            <p className="text-sm text-muted mt-0.5">
+              {job.url ? (
+                <a href={job.url} target="_blank" rel="noopener noreferrer" className="underline decoration-border hover:decoration-foreground hover:text-foreground transition-colors">
+                  {job.company}
                 </a>
               ) : (
-                exp.company
+                job.company
               )}
             </p>
-            <p className="text-sm md:text-[15px] text-muted-foreground mt-3 leading-relaxed">
-              {exp.description}
-            </p>
+            <p className="text-[15px] text-muted mt-3 leading-relaxed">{job.description}</p>
           </motion.div>
         ))}
       </div>
-    </section>
+    </Section>
   )
 }
